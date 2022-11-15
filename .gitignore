@@ -1,0 +1,5 @@
+#para descartar todos los archivos
+db/*
+
+#para no ignorar la carpeta así como el archivo .gitkeep pero si los demás archivos
+!db/.gitkeep
