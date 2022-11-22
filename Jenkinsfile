@@ -10,6 +10,14 @@ pipeline {
             }
         }
 
+        stage ('docker tag') {
+            steps {
+                script{
+                    sh "docker tag bancodesangre-miservidor judiazgo7/bancodesangre:1.0.${BUILD_ID}"
+                }
+            }
+        }
+
         stage ('docker push') {
             steps {
                 script{
