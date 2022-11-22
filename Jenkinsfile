@@ -18,6 +18,14 @@ pipeline {
             }
         }
 
+        stage ('docker login') {
+            steps {
+                script{
+                    sh "docker login -u "judiazgo7" -p "Juancd1974*" docker.io"
+                }
+            }
+        }
+
         stage ('docker push') {
             steps {
                 script{
@@ -27,3 +35,6 @@ pipeline {
         }
     }   
 }
+
+
+
