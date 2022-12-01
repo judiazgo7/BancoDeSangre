@@ -1,27 +1,13 @@
 version: "3.8"
 services:
-  # Contenedor del servidor web con PHP + Apache
-  miservidor: 
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    container_name: php-server
-    restart: always
-    ports: 
-      - 8080:80
-    links:
-      - basedatos
-    # Montamos la web desde el host al directorio web del contenedor
-    volumes: 
-      - ./html:/var/www/html
-
-  # Contenedor para la base de datos con MySQL
+  # Contenedor 1: Base de datos con MySQL
   basedatos:
     image: mysql:5.7
     container_name: bd
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports:
+      # HOST:CONTAINER
       - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
@@ -29,6 +15,41 @@ services:
     volumes:
       - ./db:/var/lib/mysql
 
+  # Contenedor 2: Servidor web con PHP + Apache
+  # Presta el servicio de conexión y consultas a la BD
+  miservidor1: 
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: php-server2
+    restart: always
+    ports: 
+      # HOST:CONTAINER
+      - 9091:80
+    links:
+      - basedatos
+    # Montamos la web desde el host al directorio web del contenedor
+    volumes: 
+      - ./html/servicio:/var/www/html
+
+  # Contenedor 3: Servidor web con PHP + Apache
+  # Usa el servicio del contenedor 2 y lo muestra en una página web
+  miservidor2: 
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: php-server3
+    restart: always
+    ports: 
+      # HOST:CONTAINER
+      - 9090:80
+    links:
+      - miservidor1
+    # Montamos la web desde el host al directorio web del contenedor
+    volumes: 
+      - ./html/vista:/var/www/html
+
+
 volumes:
-  html: {}
   db: {}
+  html: {}
