@@ -1,5 +1,5 @@
 #Descartar el archivo Jenkinsfile
-Jenkinsfile
+#Jenkinsfile
 
 #para descartar todos los archivos de la carpeta db (Base de datos)
 db/*
