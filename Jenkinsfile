@@ -2,13 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage ('docker stop') {
-            steps {
-                script {
-                    sh "docker compose down"
-                }
-            }
-        }
         stage ('docker build') {
             steps {
                 script {
@@ -39,6 +32,3 @@ pipeline {
         }
     }   
 }
-
-
-
