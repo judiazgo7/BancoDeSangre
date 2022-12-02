@@ -1,5 +1,5 @@
 try {
-    let serviceURL = "http://localhost:9091/registro.php";
+    let serviceURL = "http://localhost:9090/servicio/registro.php";
     
     $(document).ready(function () {
         const miAjax = (url, datos, metodo, tipoDatos, hacer) => {

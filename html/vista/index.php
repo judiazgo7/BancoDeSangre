@@ -24,7 +24,7 @@
     </div>  
    
     <!-- Formulario para ingresar los datos de un usuario -->
-    <form id="formRegistrar" enctype="multipart/form-data">
+    <form id="formRegistrar" enctype="application/x-www-form-urlencoded">
         <!-- Panel de datos -->
         <div class="card-body">
         <div class="row">
@@ -50,7 +50,7 @@
             </div> 
             <div class="form-group">
                 <label>Fecha de Donación</label><br>
-                <input type="date" id="fecha" name="fecha" style="font-family: Maiandra GD" Required/>
+                <input type="date" id="fecha" name="fecha" style="font-family: Maiandra GD" placeholder="dd/mm/aaaa" Required/>
             </div>  
         </div>
         </div>

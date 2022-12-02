@@ -16,39 +16,22 @@ services:
       - ./db:/var/lib/mysql
 
   # Contenedor 2: Servidor web con PHP + Apache
-  # Presta el servicio de conexión y consultas a la BD
-  miservidor1: 
+  # 1. Servicio de conexión y consultas a la BD
+  # 2. Página que usa el servicio y muestra en los resultados en el navegador 
+  miservidor: 
     build:
       context: ./
       dockerfile: Dockerfile
-    container_name: php-server2
-    restart: always
-    ports: 
-      # HOST:CONTAINER
-      - 9091:80
-    links:
-      - basedatos
-    # Montamos la web desde el host al directorio web del contenedor
-    volumes: 
-      - ./html/servicio:/var/www/html
-
-  # Contenedor 3: Servidor web con PHP + Apache
-  # Usa el servicio del contenedor 2 y lo muestra en una página web
-  miservidor2: 
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    container_name: php-server3
+    container_name: php-server
     restart: always
     ports: 
       # HOST:CONTAINER
       - 9090:80
     links:
-      - miservidor1
+      - basedatos
     # Montamos la web desde el host al directorio web del contenedor
     volumes: 
-      - ./html/vista:/var/www/html
-
+      - ./html:/var/www/html
 
 volumes:
   db: {}
