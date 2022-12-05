@@ -1,2 +1,2 @@
 # Banco de Sangre
-Proyecto educativo para la materia Integración Continua, usando jenkins
+Proyecto educativo para la materia Integración Continua, usando jenkins para el despliegue
